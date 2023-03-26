@@ -1,15 +1,9 @@
-import dotenv from "dotenv";
 import express from "express";
 
-dotenv.config({
-	path: ".env",
-});
+import routes from "./routes";
 
 const app = express();
-
-app.get("/", (_, res) => {
-	res.send("Hello!");
-});
+app.use("/api", routes);
 
 const port = process.env.BACKEND_PORT;
 app.listen(port, () => {
