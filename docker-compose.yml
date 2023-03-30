@@ -1,9 +1,33 @@
 version: "3.9"
 services:
+
   backend:
-    build: ./backend
     container_name: yrmix-backend
+    build: ./backend
     environment:
-      - BACKEND_PORT=${BACKEND_PORT}
+      - BACKEND_PORT=${DOCKER_BACKEND_PORT}
+      - MONGODB_PORT=${DOCKER_MONGODB_PORT}
+      - MONGODB_URI=mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@mongodb:${DOCKER_MONGODB_PORT}/yrmix
     ports:
-      - "${BACKEND_PORT}:${BACKEND_PORT}"
+      - ${HOST_BACKEND_PORT}:${DOCKER_BACKEND_PORT}
+    links:
+      - mongodb
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:6.0.5
+    command: mongod --port ${DOCKER_MONGODB_PORT}
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_ROOT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=admin
+      - MONGO_USER=${MONGODB_USER}
+      - MONGO_PASSWORD=${MONGODB_PASSWORD}
+    ports:
+      - ${HOST_MONGODB_PORT}:${DOCKER_MONGODB_PORT}
+    volumes:
+      - mongodb:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+volumes:
+  mongodb:

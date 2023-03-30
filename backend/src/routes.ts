@@ -1,9 +1,7 @@
-import { Router } from "express";
+import express from "express";
 
-const routes = Router();
+import { songById } from "./controllers/song-controllers";
 
-routes.get("/song/:id", (req, res) => {
-	res.send(`Details of song ${req.params.id}`);
-});
+export const songRoutes = express.Router();
 
-export default routes;
+songRoutes.get("/song/:id", songById);

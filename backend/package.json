@@ -6,17 +6,39 @@
 	"license": "MPL-2.0",
 	"scripts": {
 		"start": "ts-node-dev src/main.ts",
-		"docs": "typedoc"
+		"docs": "typedoc",
+		"test": "mocha --exit"
 	},
 	"dependencies": {
-		"express": "^4.18.2"
+		"@typegoose/typegoose": "^11.0.0",
+		"express": "^4.18.2",
+		"mongoose": "^7.0.3"
 	},
 	"devDependencies": {
+		"@types/chai": "^4.3.4",
 		"@types/express": "^4.17.17",
+		"@types/mocha": "^10.0.1",
 		"@types/node": "^18.15.10",
+		"@types/supertest": "^2.0.12",
+		"chai": "^4.3.7",
+		"cross-env": "^7.0.3",
+		"mocha": "^10.2.0",
+		"mongodb-memory-server": "^8.12.1",
+		"supertest": "^6.3.3",
 		"ts-node": "^10.9.1",
 		"ts-node-dev": "^2.0.0",
 		"typedoc": "^0.23.28",
 		"typescript": "^5.0.2"
+	},
+	"mocha": {
+		"extension": [
+			"ts"
+		],
+		"require": [
+			"ts-node/register"
+		],
+		"spec": [
+			"test/**/*.spec.ts"
+		]
 	}
 }
