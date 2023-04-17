@@ -6,6 +6,6 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 
-EXPOSE $BACKEND_PORT
+EXPOSE $PORT
 
 CMD ["npm", "start"]

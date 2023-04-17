@@ -1,6 +1,16 @@
 version: "3.9"
 services:
 
+  frontend:
+    container_name: yrmix-frontend
+    build: ./frontend
+    environment:
+      - PORT=${DOCKER_FRONTEND_PORT}
+    ports:
+      - ${HOST_FRONTEND_PORT}:${DOCKER_FRONTEND_PORT}
+    links:
+      - backend
+
   backend:
     container_name: yrmix-backend
     build: ./backend
