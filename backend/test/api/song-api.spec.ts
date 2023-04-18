@@ -13,7 +13,6 @@ describe("Song controllers", function () {
 	before(async function () {
 		mongod = await MongoMemoryServer.create();
 		process.env.MONGODB_URI = mongod.getUri();
-		process.env.MONGO;
 
 		await main();
 	});
@@ -46,5 +45,19 @@ describe("Song controllers", function () {
 
 	it("invalid id gives error", async function () {
 		await request(app).get("/api/song/invalid").expect(500);
+	});
+
+	it("creates songs", async function () {
+		const data = { name: "foo", artist: "bar" };
+		const postRes = await request(app).post("/api/song").send(data).expect(201);
+		const id: string = JSON.parse(postRes.text).id;
+
+		const getRes = await request(app)
+			.get(`/api/song/${id}`)
+			.expect(200)
+			.expect("Content-Type", /json/);
+		const json = JSON.parse(getRes.text);
+		assert.equal(json["name"], data.name);
+		assert.equal(json["artist"], data.artist);
 	});
 });

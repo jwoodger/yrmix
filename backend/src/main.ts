@@ -8,6 +8,9 @@ export const app = express();
 // The main function, which sets up the application and the DB. Is a function
 // and not top-level so it may be called from elsewhere (i.e., testing code).
 export async function main() {
+	// Parse JSON from request body.
+	app.use(express.json());
+
 	// Set up routes.
 	app.use("/api", songRoutes);
 

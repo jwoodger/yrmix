@@ -21,3 +21,19 @@ export const songById = async (
 		next(err);
 	}
 };
+
+export const createSong = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
+	const name: string = req.body.name;
+	const artist: string = req.body.artist;
+	const song = new SongModel({ name: name, artist: artist });
+	try {
+		await song.save();
+		return res.status(201).json({ id: song.id });
+	} catch (err) {
+		next(err);
+	}
+};
