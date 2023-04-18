@@ -38,7 +38,7 @@ services:
       - ${HOST_MONGODB_PORT}:${DOCKER_MONGODB_PORT}
     volumes:
       - mongodb:/data/db
-      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./db/:/docker-entrypoint-initdb.d/:ro
 
 volumes:
   mongodb:
