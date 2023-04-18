@@ -5,8 +5,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './routes/home';
 import ViewSong from './routes/view-song';
 
+// Use Bootstrap CSS.
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Set up routes.
 const router = createBrowserRouter([
 	{
 		path: '/',

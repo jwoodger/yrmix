@@ -1,11 +1,13 @@
 import React from 'react';
 import {ListGroup, ListGroupItem} from 'react-bootstrap';
 
+// Properties of the SongInfo component.
 export interface SongInfoProps {
-	name: string,
-	artist: string
+	name: string, // Title of the song.
+	artist: string // Song artist.
 };
 
+// Component showing the info for an individual song.
 export const SongInfo: React.FC<SongInfoProps> = (props) => {
 	return (
 		<ListGroup>
