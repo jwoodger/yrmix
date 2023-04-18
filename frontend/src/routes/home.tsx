@@ -1,12 +1,10 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
-
-import SongInfo from '../components/song-info';
+import { Alert, Container } from 'react-bootstrap';
 
 const Home: React.FC = () => {
 	return (
 		<Container>
-			<SongInfo name='Here Comes the Sun' artist='The Beatles' />
+			<Alert variant="dark">Hello!</Alert>
 		</Container>
 	);
 };

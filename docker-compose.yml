@@ -6,6 +6,7 @@ services:
     build: ./frontend
     environment:
       - PORT=${DOCKER_FRONTEND_PORT}
+      - REACT_APP_API_URL=http://localhost:${HOST_BACKEND_PORT}/api
     ports:
       - ${HOST_FRONTEND_PORT}:${DOCKER_FRONTEND_PORT}
     links:
