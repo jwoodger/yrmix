@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
+import { SONG_BASE_URL } from '../constants';
 import SongInfo from '../components/song-info';
-
-const SONG_BASE_URL: string = `${process.env.REACT_APP_API_URL}/song`;
 
 // Page that shows details for a specific song.
 const ViewSong: React.FC = () => {
@@ -16,7 +15,7 @@ const ViewSong: React.FC = () => {
 	useEffect(() => {
 		fetch(url)
 			.then(res => res.json())
-			.then(obj =>setData(obj))
+			.then(obj => setData(obj))
 			.catch(err => console.log(err));
 	}, [url]);
 
